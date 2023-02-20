@@ -1,0 +1,38 @@
+<block-ui>
+  <div class="row">
+    <div class="col-lg-3">
+      <form class="center" [formGroup]="esemenyFrissitForm" (ngSubmit)="frissit()">
+          <div class="form-group">
+              <label for="nev">Név</label>
+              <input type="text" class="form-control" formControlName="nev">
+          </div>
+          <div *ngIf="nev.touched && nev.errors?.['required']" class="alert alert-danger">
+            A mezőt kötelező kitölteni!
+          </div>
+
+          <div class="form-group">
+              <label for="helyszin">Helyszín</label>
+              <input type="text" class="form-control" formControlName="helyszin" maxlength="10">
+          </div>
+          <div *ngIf="helyszin.touched && helyszin.errors?.['required']" class="alert alert-danger">
+            A mezőt kötelező kitölteni!
+          </div>
+
+          <div class="form-group">
+            <label for="orszag">Ország</label>
+            <input type="text" class="form-control" formControlName="orszag">
+        </div>
+
+        <div class="form-group">
+            <label for="kapacitas">Kapacitás</label>
+            <input type="number" class="form-control" formControlName="kapacitas">
+        </div>
+        <div *ngIf="kapacitas.touched && kapacitas.errors?.['required']" class="alert alert-danger">
+          A mezőt kötelező kitölteni!
+        </div>
+        <hr>
+          <button type="submit" class="btn btn-success" [disabled]="!esemenyFrissitForm.valid">Frissít</button>
+      </form>
+    </div>
+  </div>
+</block-ui>

@@ -1,0 +1,56 @@
+<block-ui>
+  <!--div *ngFor="let e of esemeny">
+    <h1>{{ e.nev }}</h1>
+    <h2>{{ e.id }}</h2>
+    <h2>{{ e.helyszin }}</h2>
+    <h2>{{ e.orszag }}</h2>
+    <h2>{{ e.kapacitas }}</h2>
+    <h3>{{ e.userId }}</h3>
+    <h4>{{ e.userName }}</h4>
+    <button type="button" (click)="szerkesztEsemeny(e.id)" class="btn btn-warning">Szerkesztés</button>
+    <button type="button" (click)="deleteEsemeny(e.id)" class="btn btn-danger">Törlés</button>
+    <hr>
+  </div-->
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortColumn($event)" matSortActive="id" matSortDirection="desc">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <!-- Nev Column -->
+      <ng-container matColumnDef="nev">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nev </th>
+        <td mat-cell *matCellDef="let element"> {{element.nev}} </td>
+      </ng-container>
+      <!-- Helyszín Column -->
+      <ng-container matColumnDef="helyszin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Helyszín </th>
+        <td mat-cell *matCellDef="let element"> {{element.helyszin}} </td>
+      </ng-container>
+      <!-- Ország Column -->
+      <ng-container matColumnDef="orszag">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ország </th>
+        <td mat-cell *matCellDef="let element"> {{element.orszag}} </td>
+      </ng-container>
+       <!-- Kapacitás Column -->
+       <ng-container matColumnDef="kapacitas">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kapacitás </th>
+        <td mat-cell *matCellDef="let element"> {{element.kapacitas}} </td>
+      </ng-container>
+      <!-- Szerkeszt -->
+      <ng-container matColumnDef="szerkeszt">
+        <th mat-header-cell *matHeaderCellDef> Szerkeszt </th>
+        <td mat-cell *matCellDef="let element"> <button type="button" class="btn btn-warning" (click)="szerkesztEsemeny(element.id)">Szerkeszt</button> </td>
+      </ng-container>
+      <!-- Töröl -->
+      <ng-container matColumnDef="torol">
+        <th mat-header-cell *matHeaderCellDef> Töröl </th>
+        <td mat-cell *matCellDef="let element"> <button type="button" class="btn btn-danger" (click)="deleteEsemeny(element.id)">Töröl</button> </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</block-ui>

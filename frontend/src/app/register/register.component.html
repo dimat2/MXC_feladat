@@ -1,0 +1,41 @@
+<block-ui>
+  <div class="row" class="center">
+    <div *ngIf="showError" class="alert alert-danger" role="alert">
+      <ul class="list-group" *ngFor="let h of hiba">
+        <li class="list-group-item">{{ h.code }} : {{ h.description }}</li>
+      </ul> 
+    </div>
+    <div class="col-lg-12">
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <div class="form-group">
+              <label for="username">Felhasználónév</label>
+              <input type="text" class="form-control" formControlName="username">
+          </div>
+          <div *ngIf="username.touched && username.errors?.['required']" class="alert alert-danger">
+            A mezőt kötelező kitölteni!
+          </div>
+          <div class="form-group">
+              <label for="email">Email cím</label>
+              <input type="email" class="form-control" formControlName="email" [email]="true">
+          </div>
+          <div *ngIf="email.touched && email.errors?.['required']" class="alert alert-danger">
+            A mezőt kötelező kitölteni! Valódi email címet adj meg!
+          </div>
+          <div class="form-group">
+            <label for="password">Jelszó</label>
+            <input type="password" class="form-control" formControlName="password">
+        </div>
+        <div *ngIf="password.touched && password.errors?.['required']" class="alert alert-danger">
+          A mezőt kötelező kitölteni!
+        </div>
+        <hr>        
+        <select class="form-select" formControlName="role">
+          <option [ngValue]="null">-- Válassz szerepkört --</option>
+          <option *ngFor="let sz of szerepkorok">{{ sz.name }}</option>
+        </select>
+        <hr>
+          <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Regsztráció</button>
+      </form>
+    </div>
+  </div>
+</block-ui>

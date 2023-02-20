@@ -1,0 +1,22 @@
+<block-ui>
+    <div class="row" class="center">
+      <div *ngIf="showError" class="alert alert-danger" role="alert">
+        <ul class="list-group">
+          <li class="list-group-item">Van már ilyen szerepkör a rendszerben, lépj be admin-nal.</li>
+        </ul> 
+      </div>
+      <div class="col-lg-12">
+        <form [formGroup]="roleForm" (ngSubmit)="addRole()">
+            <div class="form-group">
+                <label for="role">Szerepkör</label>
+                <select class="form-select" formControlName="name">
+                  <option [ngValue]="null">-- Válassz szerepkört --</option>
+                  <option *ngFor="let o of szk">{{ o.name }}</option>
+                </select>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary" [disabled]="!roleForm.valid">Hozzáadás</button>
+          </form>
+      </div>
+    </div>
+</block-ui>
