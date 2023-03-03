@@ -8,6 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 
 import {MatSort, Sort} from '@angular/material/sort';
 import { ToastrService } from 'ngx-toastr';
+import { ProfilService } from '../services/profil.service';
 
 @Component({
   selector: 'app-esemeny-listaz',
@@ -22,9 +23,12 @@ export class EsemenyListazComponent implements OnInit, AfterViewInit {
   
   dataSource = new MatTableDataSource<Esemeny>();
 
-  displayedColumns: string[] = ['id', 'nev', 'helyszin', 'orszag', 'kapacitas', "szerkeszt", "torol"];
+  displayedColumns: string[] = ['id', 'nev', 'helyszin', 'orszag', 'kapacitas', 'elvegzett', "szerkeszt", "torol"];
 
-  constructor(private esemenySz: EsemenyService, private router: Router, private toastr: ToastrService) {}
+  constructor(private esemenySz: EsemenyService, private router: Router, private toastr: ToastrService) {
+  }
+
+  urlKi = "./assets/profile-placeholder.png";
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -51,16 +55,20 @@ export class EsemenyListazComponent implements OnInit, AfterViewInit {
     });
   }
 
-  deleteEsemeny(id) {
-    this.esemenySz.torles(id).subscribe({
-      next: (data) => {
-        this.refresh();
-        this.toastr.info('Sikeres törlés.', 'Esemény törlése');
-      },
-      error: (err) => {
-        this.toastr.warning("Nincs jogosultságod a művelet végrehajtásához.", "Role manager");
-      }
-    });
+  deleteEsemeny(id, enged) {
+    if (!enged) {
+        this.esemenySz.torles(id).subscribe({
+        next: (data) => {
+          this.refresh();
+          this.toastr.info('Sikeres törlés.', 'Esemény törlése');
+        },
+        error: (err) => {
+          this.toastr.warning("Nincs jogosultságod a művelet végrehajtásához.", "Role manager");
+        }
+      });
+    } else {
+      this.toastr.warning("Elvégzett feladatot nem lehet törölni.", "Elvégzett feladat");
+    }
   }
 
   szerkesztEsemeny(id) {

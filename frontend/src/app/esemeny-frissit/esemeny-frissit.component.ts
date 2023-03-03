@@ -28,7 +28,8 @@ export class EsemenyFrissitComponent implements OnInit {
       'nev': [''],
       'helyszin': [''],
       'orszag': [''],
-      'kapacitas': ['']
+      'kapacitas': [''],
+      'elvegzett': ['']
     })
   }
   
@@ -48,7 +49,8 @@ export class EsemenyFrissitComponent implements OnInit {
           'nev': [this.esemeny.nev, [Validators.required]],
           'helyszin': [this.esemeny.helyszin, [Validators.required]],
           'orszag': [this.esemeny.orszag],
-          'kapacitas': [this.esemeny.kapacitas, [Validators.required]]
+          'kapacitas': [this.esemeny.kapacitas, [Validators.required]],
+          'elvegzett': [this.esemeny.elvegzett]
         })
 
         this.blockUI.stop();
@@ -80,5 +82,9 @@ export class EsemenyFrissitComponent implements OnInit {
 
   get kapacitas() {
     return this.esemenyFrissitForm.get("kapacitas");
+  }
+
+  get elvegzett() {
+    return this.esemenyFrissitForm.get("elvegzett");
   }
 }

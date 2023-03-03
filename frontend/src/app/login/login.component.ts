@@ -37,7 +37,12 @@ export class LoginComponent {
       next: (data) => {
         this.authService.saveToken(JSON.parse(data)['token']);
         localStorage.setItem('user', this.loginForm.value.username);
-        this.router.navigate(['listaz']);
+        localStorage.setItem('frissit', 'nem kell');
+        this.router.navigate(['listaz']).then(() => {
+          setTimeout(function(){
+            window.location.reload();
+         }, 5000);
+        });
         this.toastr.success('Sikeres belépés', 'Bejelentkezés');
         this.blockUI.stop();
       },
@@ -56,5 +61,9 @@ export class LoginComponent {
 
   get password() {
     return this.loginForm.get("password");
+  }
+
+  mail() {
+    this.router.navigate(['mail']);
   }
 }

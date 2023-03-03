@@ -27,6 +27,12 @@
         </div>
         <div *ngIf="kapacitas.touched && kapacitas.errors?.['required']" class="alert alert-danger">
           A mezőt kötelező kitölteni!
+        </div><br />
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" formControlName="elvegzett">
+          <label class="form-check-label" for="flexCheckChecked">
+            Elvégzett
+          </label>
         </div>
         <hr>
           <button type="submit" class="btn btn-primary" [disabled]="!esemenyLetrehozForm.valid">Létrehoz</button>

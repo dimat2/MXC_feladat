@@ -4,11 +4,14 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AuthGuard } from './auth.guard';
 import { EsemenyFrissitComponent } from './esemeny-frissit/esemeny-frissit.component';
 import { EsemenyLetrehozComponent } from './esemeny-letrehoz/esemeny-letrehoz.component';
-import { EsemenyListazFelhasznaloComponent } from './esemeny-listaz-felhasznalo/esemeny-listaz-felhasznalo.component';
 import { EsemenyListazComponent } from './esemeny-listaz/esemeny-listaz.component';
 import { LoginComponent } from './login/login.component';
+import { MailComponent } from './mail/mail.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ProfilComponent } from './profil/profil.component';
 import { RegisterComponent } from './register/register.component';
 import { SzerepComponent } from './szerep/szerep.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 const routes: Routes = [
   { path: "", component: EsemenyListazComponent, canActivate: [AuthGuard] },
@@ -17,9 +20,12 @@ const routes: Routes = [
   { path: "letrehoz", component: EsemenyLetrehozComponent, canActivate: [AuthGuard], data: { permittedRoles: ['admin', 'irolvas', 'torol'] } },
   { path: "listaz", component: EsemenyListazComponent, canActivate: [AuthGuard], data: { permittedRoles: ['admin', 'irolvas', 'torol'] } },
   { path: "listaz/:id/edit", component: EsemenyFrissitComponent },
-  { path: "profil", component: EsemenyListazFelhasznaloComponent, canActivate: [AuthGuard] },
+  { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
   { path: "szerep", component: SzerepComponent },
-  { path: "admin", component: AdminPanelComponent, canActivate: [AuthGuard], data: { permittedRoles: ['admin'] } }
+  { path: "mail", component: MailComponent },
+  { path: "update-password/:resetToken/:userId", component: UpdatePasswordComponent },
+  { path: "admin", component: AdminPanelComponent, canActivate: [AuthGuard], data: { permittedRoles: ['admin'] } },
+  { path: '**', component: PagenotfoundComponent}
 ];
 
 @NgModule({

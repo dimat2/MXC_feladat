@@ -1,0 +1,20 @@
+<block-ui>
+    <div class="row" class="center">
+      <div class="col-lg-12">
+        <form (ngSubmit)="mail()" (valueChanges)="saveToTemporaryStorage()">
+            
+            <div class="form-group">
+                <label for="email">Email cím</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="mailForm.email"  [email]="true">
+            </div>
+
+            <!--div *ngIf="email.touched && email.errors?.['required']" class="alert alert-danger">
+              A mezőt kötelező kitölteni! Valódi email címet adj meg!
+            </div-->
+           
+          <hr>
+            <button type="submit" class="btn btn-primary" [disabled]="!mailForm.email">Küldés</button>
+        </form>
+      </div>
+    </div>
+  </block-ui>

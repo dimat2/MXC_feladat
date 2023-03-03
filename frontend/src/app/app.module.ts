@@ -14,7 +14,6 @@ import { EsemenyLetrehozComponent } from './esemeny-letrehoz/esemeny-letrehoz.co
 import { EsemenyService } from './services/esemeny.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { EsemenyListazComponent } from './esemeny-listaz/esemeny-listaz.component';
-import { EsemenyListazFelhasznaloComponent } from './esemeny-listaz-felhasznalo/esemeny-listaz-felhasznalo.component';
 import { EsemenyFrissitComponent } from './esemeny-frissit/esemeny-frissit.component';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { BlockUIModule } from 'ng-block-ui';
@@ -28,6 +27,13 @@ import { AuthGuard } from './auth.guard';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MailComponent } from './mail/mail.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
+
+import { FormsModule } from '@angular/forms';
+import { FormValueChangesDirective } from './form-value-changes.directive';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +43,14 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     RegisterComponent,
     EsemenyLetrehozComponent,
     EsemenyListazComponent,
-    EsemenyListazFelhasznaloComponent,
     EsemenyFrissitComponent,
     SzerepComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    MailComponent,
+    UpdatePasswordComponent,
+    FormValueChangesDirective,
+    PagenotfoundComponent,
+    ProfilComponent
   ],
   imports: [
     NgMultiSelectDropDownModule.forRoot(),
@@ -55,7 +65,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     }),
     MatTableModule,
     MatButtonModule,
-    MatSortModule
+    MatSortModule,
+    FormsModule
   ],
   providers: [AuthService, EsemenyService, AuthGuard,
   {

@@ -22,7 +22,8 @@
             A mezőt kötelező kitölteni!
           </div>
           <hr>
-          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Bejelentkezés</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Bejelentkezés</button> &nbsp;
+          <button type="button" (click)="mail()" class="btn btn-warning">Elfelejtett jelszó</button>
         </form>
     </div>
   </div>

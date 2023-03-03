@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BlockUI } from 'ng-block-ui';
@@ -11,10 +11,9 @@ import { EsemenyService } from '../services/esemeny.service';
   templateUrl: './esemeny-letrehoz.component.html',
   styleUrls: ['./esemeny-letrehoz.component.css']
 })
-export class EsemenyLetrehozComponent {
+export class EsemenyLetrehozComponent implements OnInit {
   
   @BlockUI() blockUI: NgBlockUI;
-  
   
   esemenyLetrehozForm: FormGroup;
 
@@ -23,8 +22,13 @@ export class EsemenyLetrehozComponent {
       'nev': ['', [Validators.required]],
       'helyszin': ['', [Validators.required]],
       'orszag': [''],
-      'kapacitas': ['', [Validators.required]]
+      'kapacitas': ['', [Validators.required]],
+      'elvegzett': [false, Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+
   }
 
   letrehoz() {
@@ -52,5 +56,9 @@ export class EsemenyLetrehozComponent {
 
   get kapacitas() {
     return this.esemenyLetrehozForm.get("kapacitas");
+  }
+
+  get elvegzett() {
+    return this.esemenyLetrehozForm.get("elvegzett");
   }
 }

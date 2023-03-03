@@ -4,6 +4,7 @@ export interface Esemeny {
     helyszin: string,
     orszag: string,
     kapacitas: number,
+    elvegzett: boolean,
     
     userId: string,
     userName: string
@@ -40,3 +41,7 @@ export interface MultiSelect {
     item_id: number;
     item_text: string;
 }
+
+export interface MailFormData {
+    email: string;
+  }
