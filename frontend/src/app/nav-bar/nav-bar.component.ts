@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BlockUI } from 'ng-block-ui';
 import { NgBlockUI } from 'ng-block-ui';
 import { ToastrService } from 'ngx-toastr';
@@ -14,13 +14,18 @@ export class NavBarComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
   loggedInUser: string;
-
-  urlKi = "./assets/profile-placeholder.png";
+  urlKi: string;
 
   constructor(private toastr: ToastrService, private profilService: ProfilService) {}
 
   ngOnInit(): void {
-    this.kiolvas();    
+  }
+
+  kepBetolt() {
+    if (this.loggedIn()) {
+      this.kiolvas();
+      return this.urlKi;
+    }
   }
 
   loggedIn() {
@@ -29,12 +34,13 @@ export class NavBarComponent implements OnInit {
   }
 
   onLogOut() {
-    
     this.blockUI.start('Loading...');
 
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+
     this.toastr.info("Sikeres kilépés", "Authentikáció");
+    
     this.blockUI.stop();
   }
 
