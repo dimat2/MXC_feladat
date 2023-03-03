@@ -37,6 +37,7 @@ export class LoginComponent {
       next: (data) => {
         this.authService.saveToken(JSON.parse(data)['token']);
         localStorage.setItem('user', this.loginForm.value.username);
+        localStorage.setItem('kep', "Van");
 
         this.router.navigate(['listaz']);
         this.toastr.success('Sikeres belépés', 'Bejelentkezés');

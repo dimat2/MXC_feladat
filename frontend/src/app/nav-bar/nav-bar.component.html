@@ -27,8 +27,8 @@
           <ul class="nav navbar-nav">
             <li *ngIf="loggedIn()" class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Üdvözöllek, {{ loggedInUser }}!
-                  <img [src]="kepBetolt()" alt="Logo" width="30px" class="rounded">
+                  Üdvözöllek, {{ kepInit() }} {{ loggedInUser }}!
+                  <img [src]="urlKi" alt="Logo" width="30px" class="rounded">
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" routerLink="profil">Profil</a></li>

@@ -19,13 +19,16 @@ export class NavBarComponent implements OnInit {
   constructor(private toastr: ToastrService, private profilService: ProfilService) {}
 
   ngOnInit(): void {
-  }
-
-  kepBetolt() {
     if (this.loggedIn()) {
       this.kiolvas();
-      return this.urlKi;
     }
+  }
+
+  kepInit() {
+    if (localStorage.getItem("kep")) {
+      this.kiolvas();
+      localStorage.removeItem("kep");
+     }
   }
 
   loggedIn() {
