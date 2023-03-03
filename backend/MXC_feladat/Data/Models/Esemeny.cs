@@ -21,6 +21,9 @@ namespace MXC_feladat.Data.Models
         public int Kapacitas { get; set; }
 
         [Required]
+        public bool Elvegzett { get; set; }
+
+        [Required]
         public string UserId { get; set; }
 
         public User User { get; set; }

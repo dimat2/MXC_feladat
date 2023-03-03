@@ -1,17 +1,33 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MXC_feladat;
 using MXC_feladat.Data;
 using MXC_feladat.Data.Models;
 using System.Text;
 
+var MyAllowSpecificOrigins = "CorsPolicy";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
@@ -20,7 +36,13 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = false;
-}).AddEntityFrameworkStores<ApplicationDbContext>();
+}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
+{
+    o.Name = "ResetPassword";
+    o.TokenLifespan = TimeSpan.FromHours(1);
+});
 
 var applicationSettingsConfiguration = builder.Configuration.GetSection("ApplicationSettings");
 builder.Services.Configure<ApplicationSettings>(applicationSettingsConfiguration);
@@ -54,12 +76,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.UseCors(x =>
-{
-    x.AllowAnyOrigin();
-    x.AllowAnyMethod();
-    x.AllowAnyHeader();
-});
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

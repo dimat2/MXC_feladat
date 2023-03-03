@@ -35,6 +35,7 @@ namespace MXC_feladat.Controllers
                 Helyszin = x.Helyszin,
                 Orszag = x.Orszag,
                 Kapacitas = x.Kapacitas,
+                Elvegzett = x.Elvegzett,
                 UserId = x.UserId
 
             }).FirstOrDefaultAsync();
@@ -84,6 +85,8 @@ namespace MXC_feladat.Controllers
                 Helyszin = e.Helyszin,
                 Orszag = e.Orszag,
                 Kapacitas = e.Kapacitas,
+                Elvegzett = e.Elvegzett,
+
                 UserId = userId,
                 UserName = this.User.Identity.Name
             }).ToListAsync();
@@ -108,6 +111,7 @@ namespace MXC_feladat.Controllers
             esemeny.Helyszin = model.Helyszin;
             esemeny.Orszag = model.Orszag;
             esemeny.Kapacitas = model.Kapacitas;
+            esemeny.Elvegzett = model.Elvegzett;
 
             var log = new Log
             {
@@ -168,7 +172,8 @@ namespace MXC_feladat.Controllers
                 Helyszin = model.Helyszin,
                 Orszag = model.Orszag,
                 Kapacitas = model.Kapacitas ,
-                
+                Elvegzett = model.Elvegzett,
+
                 UserId = userId,
             };
 

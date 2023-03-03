@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MXC_feladat.Data.Models;
@@ -26,7 +28,8 @@ namespace MXC_feladat.Controllers
             if (!await roleManager.RoleExistsAsync(model.Name))
             {
                 await roleManager.CreateAsync(new IdentityRole(model.Name));
-            } else
+            } 
+            else
             {
                 return BadRequest();
             }

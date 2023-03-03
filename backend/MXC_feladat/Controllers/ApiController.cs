@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +14,7 @@ namespace MXC_feladat.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("CorsPolicy")]
     public abstract class ApiController : ControllerBase
     {
         

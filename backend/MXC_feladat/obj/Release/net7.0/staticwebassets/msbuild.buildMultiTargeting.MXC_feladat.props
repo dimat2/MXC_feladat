@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MXC_feladat.props" />
+</Project>

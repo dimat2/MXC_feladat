@@ -19,5 +19,8 @@ namespace MXC_feladat.Models.Esemeny
 
         [Required]
         public int Kapacitas { get; set; }
+
+        [Required]
+        public bool Elvegzett { get; set; }
     }
 }
