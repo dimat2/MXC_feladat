@@ -35,6 +35,7 @@ export class ProfilComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event: any) => {
         this.url = event.target.result;
+
         this.profilForm.controls['file'].setValue(this.url);
       }
      } else {
@@ -48,6 +49,9 @@ export class ProfilComponent implements OnInit {
       next: (data) => {
         this.blockUI.stop();
         this.toastr.info("A képfeltöltés sikeres", "Profilkép");
+        this.kiolvas();
+
+        localStorage.setItem("kep", "Ujra van.");
       },
       error: (err) => {
         console.log(err);
